@@ -9,5 +9,5 @@
 getAnnotationBySymbol<-function(eset) {
   activateAnnotation(eset)
 
-  return(saeAffy::getAnnotationList(eset, "SYMBOL"))
+  return(getAnnotationList(eset, "SYMBOL"))
 }
