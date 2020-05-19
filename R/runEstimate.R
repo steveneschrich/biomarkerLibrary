@@ -10,12 +10,13 @@
 #' estimate_scores<-runEstimate(eset)
 runEstimate<-function(eset) {
   require(estimate)
+  stopifnot(class(eset)=="ExpressionSet")
 
   # Transform the eset to index by gene symbol
   eset_bygene<-getExpressionSetByGeneSymbol(eset)
   eset_common_genes<-featureSubset(eset_bygene, estimate::common_genes$GeneSymbol)
 
-  # Estimate is file-based
+    # Estimate is file-based
   estimate_exprs_in_file <- tempfile(pattern="estimate", fileext=".gct")
   writeGCT(eset_common_genes, estimate_exprs_in_file)
 
