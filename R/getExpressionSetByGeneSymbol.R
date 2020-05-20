@@ -6,12 +6,12 @@
 #' TODO: Add more ways of summarizing.
 #'
 #' @param eset - An expression set to reduce to gene symbol reporters.
-#'
+#' @param gene_symbols - A list of gene symbols (in order of reporters).
 #' @return A modified expression set (based on eset) with only features that are genes.
 #' @export
 #'
 #' @examples
-getExpressionSetByGeneSymbol<-function(eset) {
+getExpressionSetByGeneSymbol<-function(eset, gene_symbols ) {
   require(Biobase)
 
   stopifnot(class(eset)=="ExpressionSet")
@@ -20,7 +20,7 @@ getExpressionSetByGeneSymbol<-function(eset) {
   medians<-Biobase::rowMedians(exprs(eset), na.rm=TRUE)
   names(medians)<-featureNames(eset)
 
-  gene_symbols<-getAnnotationBySymbol(eset)
+  if (missing(gene_symbols)) gene_symbols<-getAnnotationBySymbol(eset)
 
   # Calculate the gene symbol to probeset mapping (one to one).
   res<-sapply(unique(na.omit(gene_symbols)), function(g) {

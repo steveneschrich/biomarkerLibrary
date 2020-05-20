@@ -7,11 +7,15 @@ entry per gene symbol. The featurenames of the returned expression set are the g
 Currently, this is only implemented for taking the highest median expression if there
 are duplicates.}
 \usage{
-getExpressionSetByGeneSymbol(eset)
+getExpressionSetByGeneSymbol(eset, gene_symbols)
 }
 \arguments{
 \item{eset}{\itemize{
 \item An expression set to reduce to gene symbol reporters.
+}}
+
+\item{gene_symbols}{\itemize{
+\item A list of gene symbols (in order of reporters).
 }}
 }
 \value{

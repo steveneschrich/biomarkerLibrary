@@ -5,10 +5,12 @@
 \title{Run the ESTIMATE algorithm on an ExpressionSet, and return the result as
 an ExpressionSet.}
 \usage{
-runEstimate(eset)
+runEstimate(eset, ...)
 }
 \arguments{
 \item{eset}{An affy gene expression dataset.}
+
+\item{gene_symbols}{A list of gene symbols (if not supplied in annotation for ExpressionSet).}
 }
 \value{
 An expression set consisting of estimate scores.

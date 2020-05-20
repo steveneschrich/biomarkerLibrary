@@ -8,6 +8,7 @@
 #'
 #' @examples
 getAnnotationList<-function(eset, mapping) {
+  stopifnot(class(eset)=="ExpressionSet")
   annotationName<-activateAnnotation(eset)
 
   return(unlist(as.list(get(paste0(annotationName,mapping))))[rownames(eset)])

@@ -2,18 +2,18 @@
 #' an ExpressionSet.
 #'
 #' @param eset An affy gene expression dataset.
-#'
+#' @param gene_symbols A list of gene symbols (if not supplied in annotation for ExpressionSet).
 #' @return An expression set consisting of estimate scores.
 #' @export
 #'
 #' @examples
 #' estimate_scores<-runEstimate(eset)
-runEstimate<-function(eset) {
+runEstimate<-function(eset, ...) {
   require(estimate)
   stopifnot(class(eset)=="ExpressionSet")
 
   # Transform the eset to index by gene symbol
-  eset_bygene<-getExpressionSetByGeneSymbol(eset)
+  eset_bygene<-getExpressionSetByGeneSymbol(eset, ...)
   eset_common_genes<-featureSubset(eset_bygene, estimate::common_genes$GeneSymbol)
 
     # Estimate is file-based

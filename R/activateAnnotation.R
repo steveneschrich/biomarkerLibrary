@@ -8,6 +8,8 @@
 #' @examples
 
 activateAnnotation<-function(eset) {
+
+  stopifnot(class(eset)=="ExpressionSet")
   annotationName<-annotation(eset)
   annotationPackage<-paste0(annotationName,".db")
   if (!requireNamespace("BiocManager", quietly = TRUE))
