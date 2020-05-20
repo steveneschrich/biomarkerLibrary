@@ -8,9 +8,11 @@
 #'
 #' @examples
 #' estimate_scores<-runEstimate(eset)
-runEstimate<-function(eset, ...) {
+runEstimate<-function(eset, platform, ...) {
   require(estimate)
   stopifnot(class(eset)=="ExpressionSet")
+
+  if (missing(platform)) platform<-"affymetrix"
 
   # Transform the eset to index by gene symbol
   eset_bygene<-getExpressionSetByGeneSymbol(eset, ...)
@@ -23,7 +25,7 @@ runEstimate<-function(eset, ...) {
   estimate_scores_file <-tempfile(pattern="estimate-out", fileext=".gct")
   estimateScore(input.ds=estimate_exprs_in_file,
                 output.ds=estimate_scores_file,
-                platform="affymetrix")
+                platform=platform)
 
   results<-readGCT(estimate_scores_file)
 
