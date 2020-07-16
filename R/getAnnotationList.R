@@ -11,5 +11,11 @@ getAnnotationList<-function(eset, mapping) {
   stopifnot(class(eset)=="ExpressionSet")
   annotationName<-activateAnnotation(eset)
 
-  return(unlist(as.list(get(paste0(annotationName,mapping))))[rownames(eset)])
+  probeset_list<-data.frame(gene=rep(NA, nrow(eset)), row.names=featureNames(eset))
+  gene_mapping<-unlist(as.list(get(paste0(annotationName,mapping))))
+  probeset_list[names(gene_mapping),"gene"]<-gene_mapping
+
+  annotation_list <- setNames(as.character(probeset_list$gene), rownames(probeset_list))
+
+  annotation_list
 }
