@@ -9,5 +9,5 @@
 getAnnotationByEntrezID<-function(eset) {
   activateAnnotation(eset)
 
-  return(saeAffy::getAnnotationList(eset, "ENTREZID"))
+  return(getAnnotationList(eset, "ENTREZID"))
 }
